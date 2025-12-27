@@ -1,0 +1,70 @@
+[gd_scene load_steps=10 format=3 uid="uid://cb475iohork1j"]
+
+[ext_resource type="Texture2D" uid="uid://dstqr5ytnard2" path="res://Imgs/image.webp" id="1_bwny0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4jf43"]
+size = Vector2(209.6284, 132.84311)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jgt64"]
+size = Vector2(2695, 1540)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g8cbl"]
+size = Vector2(2897, 1430)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0rcdk"]
+size = Vector2(3347, 1685)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5cvbr"]
+size = Vector2(286, 6783.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_it1m8"]
+size = Vector2(286, 6982)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ok5oa"]
+size = Vector2(286, 12097)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ww2f"]
+size = Vector2(286, 12154)
+
+[node name="BaseMap" type="Node2D"]
+
+[node name="Texture" type="Sprite2D" parent="."]
+scale = Vector2(10, 10)
+texture = ExtResource("1_bwny0")
+
+[node name="MapCollision" type="StaticBody2D" parent="."]
+
+[node name="RUCollision" type="CollisionShape2D" parent="MapCollision"]
+position = Vector2(1025, 1220)
+scale = Vector2(11.839999, 12.240003)
+shape = SubResource("RectangleShape2D_4jf43")
+
+[node name="CantinaCollision" type="CollisionShape2D" parent="MapCollision"]
+position = Vector2(-3772.5, -1282)
+shape = SubResource("RectangleShape2D_jgt64")
+
+[node name="BibliotecaCollision" type="CollisionShape2D" parent="MapCollision"]
+position = Vector2(-454.5, -2561)
+shape = SubResource("RectangleShape2D_g8cbl")
+
+[node name="SalaDoBossCollision" type="CollisionShape2D" parent="MapCollision"]
+position = Vector2(3350.5, -1137.5)
+shape = SubResource("RectangleShape2D_0rcdk")
+
+[node name="LeftCollision" type="CollisionShape2D" parent="MapCollision"]
+position = Vector2(-5903, 5.25)
+shape = SubResource("RectangleShape2D_5cvbr")
+
+[node name="RightCollision" type="CollisionShape2D" parent="MapCollision"]
+position = Vector2(5896, 53)
+shape = SubResource("RectangleShape2D_it1m8")
+
+[node name="BottomCollision" type="CollisionShape2D" parent="MapCollision"]
+position = Vector2(26, 3426)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_ok5oa")
+
+[node name="TopCollision" type="CollisionShape2D" parent="MapCollision"]
+position = Vector2(9, -3439)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_6ww2f")
