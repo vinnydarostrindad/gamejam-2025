@@ -15,7 +15,7 @@ func _process(_delta: float) -> void:
 	if has_node("HealPotion") or items.item_img.texture:
 		return
 		
-	if PlayerState._player_health < 90:
+	if PlayerState._player_health < 101:
 		print("BOTEI")
 		var heal_potion = HEAL_POTION.instantiate()
 		
@@ -40,4 +40,4 @@ func get_spawn_position() -> Vector2:
 	)
 
 func _on_leave_area_body_entered(_body: Node2D) -> void:
-	get_tree().change_scene_to_file("res://base_level.tscn")
+	get_tree().call_deferred("change_scene_to_file", "res://base_level.tscn")

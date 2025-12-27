@@ -6,8 +6,7 @@ const DYNAMITE = preload("uid://bd6yuubutpfyl")
 var _can_attack: bool = true
 var _attack_animation_name: String = ""
 var _direction: Vector2
-var _item_equipped: String = ""
-#
+
 @onready var health_bar: Control = $"../HealthBar"
 @onready var items: Control = $"../Items"
 
@@ -26,10 +25,11 @@ var _item_equipped: String = ""
 func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("use_item"):
 		if items.item_img.texture:
-			if _item_equipped == "heal_potion":
+			if PlayerState._player_item == "heal_potion":
 				heal(100)
 			items.item_img.texture = null
-			_item_equipped = ""
+			PlayerState._player_item = ""
+			PlayerState._player_item_texture = null
 	_move()
 	_attack()
 	_animate()
@@ -123,8 +123,9 @@ func throw() -> void:
 		.set_ease(Tween.EASE_OUT)
 #
 func get_item(item: CompressedTexture2D) -> void:
-	_item_equipped = item.resource_path.get_file().get_basename()
-	items.put_item(item)
+	PlayerState._player_item_texture = item
+	PlayerState._player_item = PlayerState._player_item_texture.resource_path.get_file().get_basename()
+	items.put_item(PlayerState._player_item_texture)
 
 func heal(porcentage: float) -> void:
 	PlayerState._player_health = min(PlayerState._player_max_health * (porcentage/100), 100)
