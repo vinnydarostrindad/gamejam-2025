@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://cjsvv80wvpp4j"]
+
+[ext_resource type="Script" uid="uid://0b8osnsbssq2" path="res://fight_prototype.gd" id="1_2nvsw"]
+[ext_resource type="PackedScene" uid="uid://h1kp4tu8jbuw" path="res://terrain_manager.tscn" id="2_2nvsw"]
+[ext_resource type="PackedScene" uid="uid://dwjymsf4g300t" path="res://Pawn/pawn.tscn" id="3_nmkb0"]
+[ext_resource type="PackedScene" uid="uid://dydw7usudf065" path="res://health_bar.tscn" id="4_2nvsw"]
+[ext_resource type="PackedScene" path="res://items.tscn" id="5_nmkb0"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mxk5g"]
+radius = 40.0
+height = 174.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mxk5g"]
+size = Vector2(3398, 3012)
+
+[node name="fight-prototype" type="Node2D"]
+script = ExtResource("1_2nvsw")
+
+[node name="TerrainManager" parent="." instance=ExtResource("2_2nvsw")]
+
+[node name="Pawn" parent="." instance=ExtResource("3_nmkb0")]
+position = Vector2(-1, 1492)
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="TntEnemyTimer" type="Timer" parent="Enemies"]
+autostart = true
+
+[node name="HealthBar" parent="." instance=ExtResource("4_2nvsw")]
+
+[node name="Items" parent="." instance=ExtResource("5_nmkb0")]
+
+[node name="LeaveArea" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="LeaveAreaCollision" type="CollisionShape2D" parent="LeaveArea"]
+position = Vector2(0, 1596)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_mxk5g")
+
+[node name="SpawnArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+
+[node name="SpawnAreaCollision" type="CollisionShape2D" parent="SpawnArea"]
+shape = SubResource("RectangleShape2D_mxk5g")
+
+[connection signal="timeout" from="Enemies/TntEnemyTimer" to="." method="_on_tnt_enemy_timer_timeout"]
+[connection signal="body_entered" from="LeaveArea" to="." method="_on_leave_area_body_entered"]

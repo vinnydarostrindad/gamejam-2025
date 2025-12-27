@@ -6,10 +6,10 @@ func _on_area_body_entered(body: Node2D, area: Area2D) -> void:
 		
 	match area.name:
 		"AreaRU":
-			pass
+			print("AreaRU")
 		"AreaCantina":
-			pass
+			print("AreaCantina")
 		"AreaBiblioteca":
-			pass
+			get_tree().change_scene_to_file("res://fight-prototype.tscn")
 		"AreaSalaDoBoss":
-			pass
+			print("AreaSalaDoBoss")

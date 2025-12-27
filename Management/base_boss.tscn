@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://7d55le4capno"]
+
+[node name="BaseBoss" type="CharacterBody2D"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+
+[node name="Texture" type="Sprite2D" parent="."]
+
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="HurtboxCollision" type="CollisionShape2D" parent="Hurtbox"]

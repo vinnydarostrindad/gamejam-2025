@@ -1,0 +1,9 @@
+[gd_scene load_steps=0 format=3 uid="uid://c02cg5ahgp0op"]
+
+[node name="BaseCollectable" type="Area2D"]
+
+[node name="Texture" type="Sprite2D" parent="."]
+
+[node name="collision" type="CollisionShape2D" parent="."]
+
+[node name="Animation" type="AnimationPlayer" parent="."]

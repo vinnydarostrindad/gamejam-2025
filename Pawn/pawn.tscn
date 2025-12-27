@@ -163,8 +163,11 @@ radius = 15.0
 radius = 20.0
 height = 52.0
 
-[node name="Pawn" instance=ExtResource("1_d2j80")]
+[node name="Pawn" node_paths=PackedStringArray("_axe_collision", "_hammer_collision") instance=ExtResource("1_d2j80")]
 collision_layer = 2
+_Q_attack = "throw"
+_axe_collision = NodePath("AttackAreas/AxeAttack/AxeCollision")
+_hammer_collision = NodePath("AttackAreas/HammerAttack/HammerCollision")
 
 [node name="Texture" parent="." index="0"]
 texture = ExtResource("2_c6f2o")

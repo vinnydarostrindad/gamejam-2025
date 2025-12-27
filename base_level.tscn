@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://bbuidwatpa225"]
+[gd_scene load_steps=10 format=3 uid="uid://bbuidwatpa225"]
 
 [ext_resource type="PackedScene" uid="uid://cb475iohork1j" path="res://base_map.tscn" id="1_5vx1e"]
 [ext_resource type="PackedScene" uid="uid://dwjymsf4g300t" path="res://Pawn/pawn.tscn" id="2_eesb3"]
 [ext_resource type="Script" uid="uid://c4mpw371vuya0" path="res://bus.gd" id="3_3o4py"]
 [ext_resource type="Texture2D" uid="uid://hf8uortu5hxk" path="res://Imgs/bus.jpg" id="3_eesb3"]
+[ext_resource type="PackedScene" uid="uid://dydw7usudf065" path="res://health_bar.tscn" id="5_ftfrf"]
+[ext_resource type="PackedScene" path="res://items.tscn" id="6_u2wky"]
 
 [sub_resource type="Animation" id="Animation_ftfrf"]
 length = 0.001
@@ -64,5 +66,9 @@ libraries = {
 &"": SubResource("AnimationLibrary_u2wky")
 }
 autoplay = "leave"
+
+[node name="HealthBar" parent="." instance=ExtResource("5_ftfrf")]
+
+[node name="Items" parent="." instance=ExtResource("6_u2wky")]
 
 [connection signal="animation_finished" from="Bus/Animation" to="Bus" method="_on_animation_animation_finished"]
