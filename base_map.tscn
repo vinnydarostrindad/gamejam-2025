@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://cb475iohork1j"]
+[gd_scene load_steps=15 format=3 uid="uid://cb475iohork1j"]
 
+[ext_resource type="Script" uid="uid://c7jhl36ynj3rm" path="res://base_map.gd" id="1_4jf43"]
 [ext_resource type="Texture2D" uid="uid://dstqr5ytnard2" path="res://Imgs/image.webp" id="1_bwny0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4jf43"]
@@ -26,13 +27,29 @@ size = Vector2(286, 12097)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6ww2f"]
 size = Vector2(286, 12154)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bwny0"]
+radius = 15.0
+height = 280.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4jf43"]
+height = 493.33325
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jgt64"]
+height = 770.0001
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g8cbl"]
+height = 493.33325
+
 [node name="BaseMap" type="Node2D"]
+scale = Vector2(0.6, 0.6)
+script = ExtResource("1_4jf43")
 
 [node name="Texture" type="Sprite2D" parent="."]
 scale = Vector2(10, 10)
 texture = ExtResource("1_bwny0")
 
 [node name="MapCollision" type="StaticBody2D" parent="."]
+collision_mask = 2
 
 [node name="RUCollision" type="CollisionShape2D" parent="MapCollision"]
 position = Vector2(1025, 1220)
@@ -68,3 +85,39 @@ shape = SubResource("RectangleShape2D_ok5oa")
 position = Vector2(9, -3439)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_6ww2f")
+
+[node name="EnterAreas" type="Node2D" parent="."]
+
+[node name="AreaRU" type="Area2D" parent="EnterAreas"]
+collision_mask = 2
+
+[node name="RUEnter" type="CollisionShape2D" parent="EnterAreas/AreaRU"]
+position = Vector2(-213.33333, 1303.3333)
+shape = SubResource("CapsuleShape2D_bwny0")
+
+[node name="AreaCantina" type="Area2D" parent="EnterAreas"]
+collision_mask = 2
+
+[node name="CantinaEnter" type="CollisionShape2D" parent="EnterAreas/AreaCantina"]
+position = Vector2(-2421.6665, -1203.3333)
+shape = SubResource("CapsuleShape2D_4jf43")
+
+[node name="AreaBiblioteca" type="Area2D" parent="EnterAreas"]
+collision_mask = 2
+
+[node name="BibliotecaEnter" type="CollisionShape2D" parent="EnterAreas/AreaBiblioteca"]
+position = Vector2(-608.33325, -1846.6666)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_jgt64")
+
+[node name="AreaSalaDoBoss" type="Area2D" parent="EnterAreas"]
+collision_mask = 2
+
+[node name="SalaDoBossEnter" type="CollisionShape2D" parent="EnterAreas/AreaSalaDoBoss"]
+position = Vector2(1673.3333, -1128.3333)
+shape = SubResource("CapsuleShape2D_g8cbl")
+
+[connection signal="body_entered" from="EnterAreas/AreaRU" to="." method="_on_area_body_entered" flags=18]
+[connection signal="body_entered" from="EnterAreas/AreaCantina" to="." method="_on_area_body_entered" flags=18]
+[connection signal="body_entered" from="EnterAreas/AreaBiblioteca" to="." method="_on_area_body_entered" flags=18]
+[connection signal="body_entered" from="EnterAreas/AreaSalaDoBoss" to="." method="_on_area_body_entered" flags=18]

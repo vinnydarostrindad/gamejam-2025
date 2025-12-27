@@ -1,0 +1,210 @@
+[gd_scene load_steps=14 format=3 uid="uid://dwjymsf4g300t"]
+
+[ext_resource type="PackedScene" uid="uid://b0ot57bgx1d8v" path="res://base_character.tscn" id="1_d2j80"]
+[ext_resource type="Texture2D" uid="uid://dk0iv6s3k5g8m" path="res://Pawn/Red/Pawn_Red.png" id="2_c6f2o"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lftkj"]
+radius = 7.0
+height = 44.0
+
+[sub_resource type="Animation" id="Animation_7phpi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_em6uh"]
+resource_name = "attack_axe"
+length = 0.6
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [18, 19, 20, 21, 22, 23]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"enable_attack"
+}, {
+"args": [],
+"method": &"disable_attack"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_lftkj"]
+resource_name = "attack_hammer"
+length = 0.6
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(7.450581e-09, 0.10000001, 0.20000002, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [12, 13, 14, 15, 16, 17]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"enable_attack"
+}, {
+"args": [],
+"method": &"disable_attack"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_4028v"]
+resource_name = "idle"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.19999999, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_c6f2o"]
+resource_name = "run"
+length = 0.6
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [6, 7, 8, 9, 10, 11]
+}
+
+[sub_resource type="Animation" id="Animation_rmgsd"]
+resource_name = "throw"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [24, 25, 26, 27]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_em6uh"]
+_data = {
+&"RESET": SubResource("Animation_7phpi"),
+&"attack_axe": SubResource("Animation_em6uh"),
+&"attack_hammer": SubResource("Animation_lftkj"),
+&"idle": SubResource("Animation_4028v"),
+&"run": SubResource("Animation_c6f2o"),
+&"throw": SubResource("Animation_rmgsd")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c6f2o"]
+radius = 39.0
+height = 88.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c6f2o"]
+radius = 15.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4028v"]
+radius = 20.0
+height = 52.0
+
+[node name="Pawn" instance=ExtResource("1_d2j80")]
+collision_layer = 2
+
+[node name="Texture" parent="." index="0"]
+texture = ExtResource("2_c6f2o")
+offset = Vector2(0, -26)
+hframes = 6
+vframes = 6
+
+[node name="Collision" parent="." index="1"]
+show_behind_parent = true
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_lftkj")
+
+[node name="Animation" parent="." index="2"]
+libraries = {
+&"": SubResource("AnimationLibrary_em6uh")
+}
+autoplay = "idle"
+
+[node name="Camera2D" type="Camera2D" parent="." index="3"]
+zoom = Vector2(0.7, 0.7)
+
+[node name="AxeAttack" type="Area2D" parent="AttackAreas" index="0"]
+position = Vector2(0, -23)
+collision_layer = 4
+collision_mask = 16
+
+[node name="AxeCollision" type="CollisionShape2D" parent="AttackAreas/AxeAttack" index="0"]
+shape = SubResource("CapsuleShape2D_c6f2o")
+disabled = true
+
+[node name="HammerAttack" type="Area2D" parent="AttackAreas" index="1"]
+position = Vector2(0, -18)
+collision_layer = 4
+collision_mask = 16
+
+[node name="HammerCollision" type="CollisionShape2D" parent="AttackAreas/HammerAttack" index="0"]
+scale = Vector2(6, 6)
+shape = SubResource("CircleShape2D_c6f2o")
+disabled = true
+
+[node name="HurtboxCollision" parent="Hurtbox" index="0"]
+position = Vector2(0, -25)
+shape = SubResource("CapsuleShape2D_4028v")

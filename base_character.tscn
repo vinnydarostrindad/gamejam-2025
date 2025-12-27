@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0ot57bgx1d8v"]
+
+[ext_resource type="Script" uid="uid://dcinbsbkhptb6" path="res://base_character.gd" id="1_jdal0"]
+
+[node name="BaseCharacter" type="CharacterBody2D" node_paths=PackedStringArray("_animation", "_sprite2D") groups=["Player"]]
+script = ExtResource("1_jdal0")
+_left_attack_name = "attack_axe"
+_right_attack_name = "attack_hammer"
+_animation = NodePath("Animation")
+_sprite2D = NodePath("Texture")
+
+[node name="Texture" type="Sprite2D" parent="."]
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+
+[node name="AttackAreas" type="Node2D" parent="."]
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 64
+
+[node name="HurtboxCollision" type="CollisionShape2D" parent="Hurtbox"]
+
+[connection signal="animation_finished" from="Animation" to="." method="_on_animation_finished"]
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
