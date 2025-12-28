@@ -1,0 +1,114 @@
+[gd_scene load_steps=11 format=3 uid="uid://dmlcjaapn4u7d"]
+
+[ext_resource type="PackedScene" uid="uid://djvyf6wgymda1" path="res://Bosses/boss_base.tscn" id="1_xk4dv"]
+[ext_resource type="Texture2D" uid="uid://cias1y8hg07o1" path="res://Bosses/Sprites/Boss1/boss_1_sprite.png" id="2_dwwn5"]
+[ext_resource type="Script" uid="uid://2r4yfi8b2cdg" path="res://Bosses/boss_1.gd" id="2_tvtw2"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dwwn5"]
+radius = 50.401356
+height = 202.0
+
+[sub_resource type="Animation" id="Animation_lsnmh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_vpj1d"]
+resource_name = "idle"
+length = 0.4
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_ijwg0"]
+resource_name = "spin"
+length = 0.14
+loop_mode = 1
+step = 0.04
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-1.4901161e-08, 0.04, 0.08, 0.120000005),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_03q8c"]
+_data = {
+&"RESET": SubResource("Animation_lsnmh"),
+&"idle": SubResource("Animation_vpj1d"),
+&"spin": SubResource("Animation_ijwg0")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tvtw2"]
+radius = 138.43771
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vpj1d"]
+radius = 138.36185
+
+[node name="Boss1" instance=ExtResource("1_xk4dv")]
+script = ExtResource("2_tvtw2")
+
+[node name="Texture" parent="." index="0"]
+texture = ExtResource("2_dwwn5")
+hframes = 4
+vframes = 2
+
+[node name="Collision" parent="." index="1"]
+position = Vector2(7, 39)
+rotation = 1.5707964
+scale = Vector2(1.0118775, 1)
+shape = SubResource("CapsuleShape2D_dwwn5")
+
+[node name="AnimationPlayer" parent="." index="2"]
+libraries = {
+&"": SubResource("AnimationLibrary_03q8c")
+}
+autoplay = "spin"
+
+[node name="Hurtbox" parent="." index="4"]
+monitoring = false
+
+[node name="HurtboxCollision" parent="Hurtbox" index="0"]
+shape = SubResource("CircleShape2D_tvtw2")
+
+[node name="Marker2D" type="Marker2D" parent="." index="5"]
+
+[node name="ShootBlueBallTimer" type="Timer" parent="." index="6"]
+wait_time = 0.05
+
+[node name="HitboxCollision" parent="Hitbox" index="0"]
+shape = SubResource("CircleShape2D_vpj1d")
+
+[node name="BaseAttackTimer" type="Timer" parent="." index="8"]
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="timeout" from="ShootBlueBallTimer" to="." method="_on_shoot_blue_ball_timer_timeout"]
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="timeout" from="BaseAttackTimer" to="." method="_on_base_attack_timer_timeout"]

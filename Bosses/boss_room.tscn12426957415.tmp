@@ -1,0 +1,39 @@
+[gd_scene load_steps=8 format=3 uid="uid://peubffkdfvs5"]
+
+[ext_resource type="PackedScene" uid="uid://h1kp4tu8jbuw" path="res://terrain_manager.tscn" id="1_74jq1"]
+[ext_resource type="Script" uid="uid://b34a8yftu71fk" path="res://Bosses/boss_room.gd" id="1_h7gjp"]
+[ext_resource type="PackedScene" uid="uid://dwjymsf4g300t" path="res://Pawn/pawn.tscn" id="2_nav6l"]
+[ext_resource type="PackedScene" uid="uid://dmlcjaapn4u7d" path="res://Bosses/boss_1.tscn" id="3_h7gjp"]
+[ext_resource type="PackedScene" uid="uid://dydw7usudf065" path="res://health_bar.tscn" id="5_rjp1e"]
+[ext_resource type="PackedScene" path="res://items.tscn" id="6_0hujs"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nav6l"]
+radius = 28.0
+height = 108.0
+
+[node name="BossRoom" type="Node2D"]
+script = ExtResource("1_h7gjp")
+
+[node name="TerrainManager" parent="." instance=ExtResource("1_74jq1")]
+scale = Vector2(0.7, 0.7)
+
+[node name="Pawn" parent="." instance=ExtResource("2_nav6l")]
+position = Vector2(0, 1040)
+
+[node name="Boss1" parent="." instance=ExtResource("3_h7gjp")]
+position = Vector2(6, 6)
+collision_layer = 1
+
+[node name="LeaveArea" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="LeaveAreaCollision" type="CollisionShape2D" parent="LeaveArea"]
+position = Vector2(0, 1118)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_nav6l")
+
+[node name="HealthBar" parent="." instance=ExtResource("5_rjp1e")]
+
+[node name="Items" parent="." instance=ExtResource("6_0hujs")]
+
+[connection signal="body_entered" from="LeaveArea" to="." method="_on_leave_area_body_entered"]

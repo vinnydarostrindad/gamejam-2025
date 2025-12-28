@@ -109,7 +109,12 @@ func get_hit(damage: int):
 		print("PERDEU")
 		get_tree().reload_current_scene()
 
-func _on_hurtbox_area_entered(_area: Area2D) -> void:
+func _on_hurtbox_area_entered(area: Area2D) -> void:
+	if area.get("damage"):
+		print("TEM RAPAz")
+		get_hit(area.damage)
+		return
+		
 	get_hit(1)
 
 func throw() -> void:
@@ -121,7 +126,7 @@ func throw() -> void:
 	tween.tween_property(dynamite, "global_position", (_direction * 500) + global_position, 0.6)\
 		.set_trans(Tween.TRANS_SINE)\
 		.set_ease(Tween.EASE_OUT)
-#
+
 func get_item(item: CompressedTexture2D) -> void:
 	PlayerState._player_item_texture = item
 	PlayerState._player_item = PlayerState._player_item_texture.resource_path.get_file().get_basename()
