@@ -60,7 +60,7 @@ func _move() -> void:
 		else:
 			_axe_collision.rotation_degrees = 0
 	
-	velocity = _direction * _move_speed
+	velocity = _direction * (_move_speed * PlayerState.player_speed)
 	move_and_slide()
 	
 func _animate() -> void:

@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://dt551sxdxpt0w"]
+
+[ext_resource type="PackedScene" uid="uid://bedjae8cvvr5d" path="res://Rooms/ru_room.tscn" id="1_58gwo"]
+[ext_resource type="Script" uid="uid://5pkgxq6asnwi" path="res://Rooms/ru.gd" id="1_bdjn6"]
+[ext_resource type="PackedScene" uid="uid://dwjymsf4g300t" path="res://Pawn/pawn.tscn" id="2_bdjn6"]
+[ext_resource type="PackedScene" uid="uid://byr2npjfsao03" path="res://player_ui/player_ui.tscn" id="3_tub27"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_icvob"]
+radius = 40.0
+height = 174.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bdjn6"]
+size = Vector2(64, 20.869566)
+
+[sub_resource type="LabelSettings" id="LabelSettings_tub27"]
+font_size = 20
+
+[node name="RU" type="Node2D"]
+script = ExtResource("1_bdjn6")
+
+[node name="RURoom" parent="." instance=ExtResource("1_58gwo")]
+
+[node name="Pawn" parent="." instance=ExtResource("2_bdjn6")]
+position = Vector2(62, 295)
+
+[node name="PlayerUI" parent="." instance=ExtResource("3_tub27")]
+
+[node name="LeaveArea" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="LeaveAreaCollision" type="CollisionShape2D" parent="LeaveArea"]
+position = Vector2(-33, 316)
+shape = SubResource("CapsuleShape2D_icvob")
+
+[node name="GetFood" type="Area2D" parent="." groups=["Interact"]]
+collision_mask = 2
+
+[node name="GetFoodCollision" type="CollisionShape2D" parent="GetFood"]
+position = Vector2(1120, 320)
+scale = Vector2(1, 18.399998)
+shape = SubResource("RectangleShape2D_bdjn6")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = 1243.0
+offset_top = 294.0
+offset_right = 1318.0
+offset_bottom = 317.0
+text = "Comer (F)"
+label_settings = SubResource("LabelSettings_tub27")
+
+[connection signal="body_entered" from="LeaveArea" to="." method="_on_leave_area_body_entered"]
+[connection signal="body_entered" from="GetFood" to="." method="_on_get_food_body_entered"]
+[connection signal="body_exited" from="GetFood" to="." method="_on_get_food_body_exited"]

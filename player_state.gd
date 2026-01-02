@@ -41,6 +41,16 @@ signal happiness_change(current_happiness: float, max_happiness: float)
 
 var player_happiness: float = 100
 var player_max_happiness: float = 100
-func happiness_update():
-	player_happiness -= 0.1
+
+func happiness_update(percentage = null) -> void:
+	if percentage != null:
+		player_happiness = percentage
+	else:
+		if player_happiness <= 0:
+			return
+		player_happiness -= 0.025
+		
+	player_speed = max(player_happiness / 100, 0.2)
+	player_strength = max(player_happiness / 80, 0.4)
+	
 	emit_signal("happiness_change", player_happiness, player_max_happiness)
