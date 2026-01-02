@@ -7,5 +7,5 @@ func _on_scene_changed() -> void:
 	var scene := get_tree().current_scene
 	if scene:
 		var player = get_tree().get_first_node_in_group("Player")
-		if PlayerState._player_item_texture:
-			player.get_item(PlayerState._player_item_texture)
+		if PlayerState.player_item_texture:
+			player.get_item(PlayerState.player_item_texture)

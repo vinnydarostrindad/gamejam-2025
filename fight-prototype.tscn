@@ -1,10 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cjsvv80wvpp4j"]
+[gd_scene load_steps=7 format=3 uid="uid://cjsvv80wvpp4j"]
 
 [ext_resource type="Script" uid="uid://0b8osnsbssq2" path="res://fight_prototype.gd" id="1_2nvsw"]
 [ext_resource type="PackedScene" uid="uid://h1kp4tu8jbuw" path="res://terrain_manager.tscn" id="2_2nvsw"]
 [ext_resource type="PackedScene" uid="uid://dwjymsf4g300t" path="res://Pawn/pawn.tscn" id="3_nmkb0"]
-[ext_resource type="PackedScene" uid="uid://dydw7usudf065" path="res://health_bar.tscn" id="4_2nvsw"]
-[ext_resource type="PackedScene" path="res://items.tscn" id="5_nmkb0"]
+[ext_resource type="PackedScene" uid="uid://byr2npjfsao03" path="res://player_ui/player_ui.tscn" id="4_48oap"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mxk5g"]
 radius = 40.0
@@ -26,10 +25,6 @@ position = Vector2(-1, 1492)
 [node name="TntEnemyTimer" type="Timer" parent="Enemies"]
 autostart = true
 
-[node name="HealthBar" parent="." instance=ExtResource("4_2nvsw")]
-
-[node name="Items" parent="." instance=ExtResource("5_nmkb0")]
-
 [node name="LeaveArea" type="Area2D" parent="."]
 collision_mask = 2
 
@@ -44,6 +39,8 @@ collision_mask = 0
 
 [node name="SpawnAreaCollision" type="CollisionShape2D" parent="SpawnArea"]
 shape = SubResource("RectangleShape2D_mxk5g")
+
+[node name="PlayerUI" parent="." instance=ExtResource("4_48oap")]
 
 [connection signal="timeout" from="Enemies/TntEnemyTimer" to="." method="_on_tnt_enemy_timer_timeout"]
 [connection signal="body_entered" from="LeaveArea" to="." method="_on_leave_area_body_entered"]

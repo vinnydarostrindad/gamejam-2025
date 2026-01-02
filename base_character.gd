@@ -7,8 +7,8 @@ var _can_attack: bool = true
 var _attack_animation_name: String = ""
 var _direction: Vector2
 
-@onready var health_bar: Control = $"../HealthBar"
-@onready var items: Control = $"../Items"
+@onready var health_bar: Control = $"../PlayerUI/HealthBar"
+@onready var items: Control = $"../PlayerUI/Items"
 
 @export_category("Variables")
 @export var _move_speed: float = 1500.0
@@ -25,11 +25,11 @@ var _direction: Vector2
 func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("use_item"):
 		if items.item_img.texture:
-			if PlayerState._player_item == "heal_potion":
+			if PlayerState.player_item == "heal_potion":
 				heal(100)
 			items.item_img.texture = null
-			PlayerState._player_item = ""
-			PlayerState._player_item_texture = null
+			PlayerState.player_item = ""
+			PlayerState.player_item_texture = null
 	_move()
 	_attack()
 	_animate()
@@ -102,10 +102,10 @@ func disable_attack() -> void:
 			_hammer_collision.disabled = true
 
 func get_hit(damage: int):
-	PlayerState._player_health -= damage
-	health_bar.set_health(PlayerState._player_health)
+	PlayerState.player_health -= damage
+	health_bar.set_health(PlayerState.player_health)
 	
-	if PlayerState._player_health <= 0:
+	if PlayerState.player_health <= 0:
 		print("PERDEU")
 		get_tree().reload_current_scene()
 
@@ -128,10 +128,10 @@ func throw() -> void:
 		.set_ease(Tween.EASE_OUT)
 
 func get_item(item: CompressedTexture2D) -> void:
-	PlayerState._player_item_texture = item
-	PlayerState._player_item = PlayerState._player_item_texture.resource_path.get_file().get_basename()
-	items.put_item(PlayerState._player_item_texture)
+	PlayerState.player_item_texture = item
+	PlayerState.player_item = PlayerState.player_item_texture.resource_path.get_file().get_basename()
+	items.put_item(PlayerState.player_item_texture)
 
 func heal(porcentage: float) -> void:
-	PlayerState._player_health = min(PlayerState._player_max_health * (porcentage/100), 100)
-	health_bar.set_health(PlayerState._player_health)
+	PlayerState.player_health = min(PlayerState.player_max_health * (porcentage/100), 100)
+	health_bar.set_health(PlayerState.player_health)

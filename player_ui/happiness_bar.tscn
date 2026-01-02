@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://cd7qeooo47vva"]
+
+[ext_resource type="Script" uid="uid://v218ilghc14w" path="res://player_ui/happiness_bar.gd" id="1_em727"]
+
+[node name="HappinessBar" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_em727")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Border" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -69.0
+offset_right = 504.0
+offset_bottom = -35.0
+grow_vertical = 0
+color = Color(0.8352941, 0.5176471, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Fill" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = -67.0
+offset_right = 502.0
+offset_bottom = -37.0
+grow_vertical = 0
+color = Color(1, 1, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="HappinessFallTimer" type="Timer" parent="."]
+wait_time = 0.05
+autostart = true
+
+[connection signal="timeout" from="HappinessFallTimer" to="." method="_on_happiness_fall_timer_timeout"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dydw7usudf065"]
 
-[ext_resource type="Script" uid="uid://600uel8kn71g" path="res://health_bar.gd" id="1_dm8wk"]
+[ext_resource type="Script" uid="uid://600uel8kn71g" path="res://player_ui/health_bar.gd" id="1_dm8wk"]
 
 [node name="HealthBar" type="Control"]
 layout_mode = 3
@@ -21,6 +21,7 @@ offset_top = -34.0
 offset_right = 504.0
 grow_vertical = 0
 color = Color(0.43137255, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="Fill" type="ColorRect" parent="CanvasLayer"]
 anchors_preset = 2
@@ -32,3 +33,4 @@ offset_right = 502.0
 offset_bottom = -2.0
 grow_vertical = 0
 color = Color(1, 0, 0, 1)
+metadata/_edit_use_anchors_ = true

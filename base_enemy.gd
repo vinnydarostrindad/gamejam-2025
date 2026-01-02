@@ -8,8 +8,9 @@ class_name BaseEnemy
 @export var _move_speed: float = 100.0
 @export var knockback_force: float = 2000.0
 @export var knockback_decay: float = 10000.0
-@export var _enemy_life: int = 4
+@export var _enemy_life: float = 4
 @export var distance_of_player: int = 60
+@export var _enemy_xp: int = 25
 
 @export_category("Objects")
 @export var _animation: AnimationPlayer
@@ -63,24 +64,25 @@ func animate() -> void:
 	else:
 		_animation.play("run")
 
-func get_hit(from_position: Vector2, damage: int) -> void:
+func get_hit(from_position: Vector2, damage: float) -> void:
 	var direction = (global_position - from_position).normalized()
 	knockback_velocity = direction * knockback_force
 	
 	_enemy_life -= damage
 	if _enemy_life <= 0:
+		PlayerState.add_xp(_enemy_xp)
 		queue_free()
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
-	var damage: int = 1
+	var damage: float = 0.25
 	
 	match area.name:
 		"AxeAttack":
-			damage = 2
+			damage = 0.5
 		"Dynamite":
-			damage = 3
+			damage = 1.5
 
-	get_hit(area.global_position, damage)
+	get_hit(area.global_position, damage * PlayerState.player_strength)
 
 func _on_hitbox_area_entered(_area: Area2D) -> void:
 	reset_hitbox()

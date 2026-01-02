@@ -1,0 +1,56 @@
+[gd_scene load_steps=3 format=3 uid="uid://mbkd1pfpn2r"]
+
+[ext_resource type="Script" uid="uid://cxqipaxglycn" path="res://player_ui/xp_bar.gd" id="1_ocuqq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ocuqq"]
+font_size = 26
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[node name="XpBar" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ocuqq")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Border" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -252.0
+offset_top = 20.0
+offset_right = 252.0
+offset_bottom = 40.0
+grow_horizontal = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Fill" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -250.0
+offset_top = 22.0
+offset_right = -250.0
+offset_bottom = 38.0
+grow_horizontal = 2
+color = Color(0, 0.764052, 0, 1)
+
+[node name="LevelText" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 49.0
+offset_right = 20.0
+offset_bottom = 72.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+text = "0 QI"
+label_settings = SubResource("LabelSettings_ocuqq")
+horizontal_alignment = 1
+vertical_alignment = 1

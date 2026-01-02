@@ -2,9 +2,9 @@ extends Node2D
 
 @onready var player: CharacterBody2D = get_tree().get_first_node_in_group("Player")
 @onready var camera := player.get_node("Camera2D")
-@onready var health_bar: Control = $HealthBar
+@onready var health_bar: Control = $PlayerUI/HealthBar
 @onready var enemies: Node2D = $Enemies
-@onready var items: Control = $Items
+@onready var items: Control = $PlayerUI/Items
 @onready var spawn_area: Area2D = $SpawnArea
 @onready var spawn_area_collision: CollisionShape2D = $SpawnArea/SpawnAreaCollision
 
@@ -15,7 +15,7 @@ func _process(_delta: float) -> void:
 	if has_node("HealPotion") or items.item_img.texture:
 		return
 		
-	if PlayerState._player_health < 101:
+	if PlayerState.player_health < 101:
 		print("BOTEI")
 		var heal_potion = HEAL_POTION.instantiate()
 		

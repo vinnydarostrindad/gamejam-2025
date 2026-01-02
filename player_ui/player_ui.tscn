@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://byr2npjfsao03"]
+
+[ext_resource type="PackedScene" uid="uid://mbkd1pfpn2r" path="res://player_ui/xp_bar.tscn" id="1_654h1"]
+[ext_resource type="PackedScene" uid="uid://dydw7usudf065" path="res://player_ui/health_bar.tscn" id="2_pc08v"]
+[ext_resource type="PackedScene" uid="uid://b7jdfn0x21l8c" path="res://player_ui/items.tscn" id="3_tybkg"]
+[ext_resource type="PackedScene" uid="uid://cd7qeooo47vva" path="res://player_ui/happiness_bar.tscn" id="4_4mx22"]
+
+[node name="PlayerUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="XpBar" parent="." instance=ExtResource("1_654h1")]
+layout_mode = 1
+
+[node name="HealthBar" parent="." instance=ExtResource("2_pc08v")]
+layout_mode = 1
+
+[node name="Items" parent="." instance=ExtResource("3_tybkg")]
+layout_mode = 1
+
+[node name="HappinessBar" parent="." instance=ExtResource("4_4mx22")]
+layout_mode = 1
