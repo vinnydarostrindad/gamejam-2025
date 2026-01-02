@@ -8,7 +8,7 @@ func _on_area_body_entered(body: Node2D, area: Area2D) -> void:
 		"AreaRU":
 			get_tree().call_deferred("change_scene_to_file", "res://Rooms/ru.tscn")
 		"AreaCantina":
-			print("AreaCantina")
+			get_tree().call_deferred("change_scene_to_file", "res://Rooms/cantina.tscn")
 		"AreaBiblioteca":
 			get_tree().call_deferred("change_scene_to_file", "res://fight-prototype.tscn")
 		"AreaSalaDoBoss":

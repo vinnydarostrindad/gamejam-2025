@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bn48yxd3xxoay"]
+
+[ext_resource type="PackedScene" uid="uid://b0ot57bgx1d8v" path="res://base_character.tscn" id="1_pkbmn"]
+[ext_resource type="Texture2D" uid="uid://baaq8800fk80s" path="res://Factions/Knights/Troops/Warrior/Purple/Warrior_Purple.png" id="2_373gj"]
+
+[node name="Warrior" instance=ExtResource("1_pkbmn")]
+
+[node name="Texture" parent="." index="0"]
+texture = ExtResource("2_373gj")
+hframes = 6
+vframes = 9

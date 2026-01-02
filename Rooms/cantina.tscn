@@ -1,0 +1,88 @@
+[gd_scene load_steps=12 format=3 uid="uid://c2xlsidowsqs0"]
+
+[ext_resource type="Script" uid="uid://yrwxyvvoi4tx" path="res://cantina.gd" id="1_yyvnh"]
+[ext_resource type="PackedScene" uid="uid://dxuamxej80oi0" path="res://Rooms/cantina_room.tscn" id="2_i8swe"]
+[ext_resource type="PackedScene" uid="uid://bn48yxd3xxoay" path="res://warrior.tscn" id="3_i8swe"]
+[ext_resource type="PackedScene" uid="uid://byr2npjfsao03" path="res://player_ui/player_ui.tscn" id="4_qsy0i"]
+[ext_resource type="PackedScene" uid="uid://dwjymsf4g300t" path="res://Pawn/pawn.tscn" id="5_83k88"]
+[ext_resource type="PackedScene" uid="uid://bo5dgtchegmpt" path="res://missions.tscn" id="6_83k88"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_se5d6"]
+radius = 40.0
+height = 314.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qsy0i"]
+size = Vector2(64.99997, 193)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_83k88"]
+size = Vector2(64, 191)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3tn07"]
+size = Vector2(192, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1rsvm"]
+size = Vector2(65, 192)
+
+[node name="Cantina" type="Node2D"]
+script = ExtResource("1_yyvnh")
+
+[node name="CantinaRoom" parent="." instance=ExtResource("2_i8swe")]
+
+[node name="LeaveArea" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="LeaveAreaCollision" type="CollisionShape2D" parent="LeaveArea"]
+position = Vector2(1889, 785)
+shape = SubResource("CapsuleShape2D_se5d6")
+
+[node name="ShopArea" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="ShopAreaCollision1" type="CollisionShape2D" parent="ShopArea"]
+position = Vector2(991.5, 543.5)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_qsy0i")
+
+[node name="ShopAreaCollision2" type="CollisionShape2D" parent="ShopArea"]
+position = Vector2(736, 799.5)
+shape = SubResource("RectangleShape2D_83k88")
+
+[node name="ShopAreaCollision3" type="CollisionShape2D" parent="ShopArea"]
+position = Vector2(993, 1057)
+shape = SubResource("RectangleShape2D_3tn07")
+
+[node name="ShopAreaCollision4" type="CollisionShape2D" parent="ShopArea"]
+position = Vector2(1248.5, 800)
+shape = SubResource("RectangleShape2D_1rsvm")
+
+[node name="ShopWorkers" type="Node2D" parent="."]
+
+[node name="Warrior" parent="ShopWorkers" instance=ExtResource("3_i8swe")]
+position = Vector2(1126, 785)
+script = null
+
+[node name="Warrior2" parent="ShopWorkers" instance=ExtResource("3_i8swe")]
+position = Vector2(856, 790)
+script = null
+
+[node name="Warrior3" parent="ShopWorkers" instance=ExtResource("3_i8swe")]
+position = Vector2(996, 640)
+script = null
+
+[node name="Warrior4" parent="ShopWorkers" instance=ExtResource("3_i8swe")]
+position = Vector2(991, 923)
+script = null
+
+[node name="PlayerUI" parent="." instance=ExtResource("4_qsy0i")]
+
+[node name="Pawn" parent="." instance=ExtResource("5_83k88")]
+position = Vector2(1762, 793)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Missions" parent="CanvasLayer" instance=ExtResource("6_83k88")]
+visible = false
+
+[connection signal="body_entered" from="LeaveArea" to="." method="_on_leave_area_body_entered"]
+[connection signal="body_entered" from="ShopArea" to="." method="_on_shop_area_body_entered"]
+[connection signal="body_exited" from="ShopArea" to="." method="_on_shop_area_body_exited"]

@@ -1,0 +1,82 @@
+[gd_scene load_steps=7 format=3 uid="uid://dcddnmgemgfhr"]
+
+[ext_resource type="Script" uid="uid://bj7tumt04cgkd" path="res://mission_box.gd" id="1_5fdtm"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_aqm4m"]
+font_size = 38
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5fdtm"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_46fxe"]
+font_size = 19
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_667ol"]
+bg_color = Color(0, 0.627451, 0, 1)
+
+[sub_resource type="Theme" id="Theme_r0b10"]
+Button/styles/hover = SubResource("StyleBoxFlat_667ol")
+
+[node name="Mission" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5fdtm")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.24705882, 0, 1)
+
+[node name="BoxContainer" type="BoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 10.0
+offset_right = -15.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+vertical = true
+
+[node name="MissionName" type="Label" parent="BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Mob Killer"
+label_settings = SubResource("LabelSettings_aqm4m")
+
+[node name="HSeparator" type="HSeparator" parent="BoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_5fdtm")
+
+[node name="MissionObjective" type="Label" parent="BoxContainer"]
+layout_mode = 2
+text = "Mate 25 mobs"
+label_settings = SubResource("LabelSettings_46fxe")
+
+[node name="MissionEarns" type="Label" parent="BoxContainer"]
+layout_mode = 2
+text = "+10 QI"
+label_settings = SubResource("LabelSettings_46fxe")
+
+[node name="HSeparator2" type="HSeparator" parent="BoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_5fdtm")
+
+[node name="HSeparator3" type="HSeparator" parent="BoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_5fdtm")
+
+[node name="AcceptBtn" type="Button" parent="BoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_r0b10")
+text = "Aceitar
+"

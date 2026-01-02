@@ -3,6 +3,7 @@ class_name BaseCharacter
 
 const DYNAMITE = preload("uid://bd6yuubutpfyl")
 
+var is_in_shop: bool = false
 var _can_attack: bool = true
 var _attack_animation_name: String = ""
 var _direction: Vector2
@@ -31,6 +32,9 @@ func _physics_process(_delta: float) -> void:
 			PlayerState.player_item = ""
 			PlayerState.player_item_texture = null
 	_move()
+	if is_in_shop:
+		_animation.play("idle")
+		return
 	_attack()
 	_animate()
 
@@ -43,7 +47,7 @@ func _attack() -> void:
 		_can_attack = false
 		_attack_animation_name = _right_attack_name
 		set_physics_process(false)
-	elif Input.is_action_just_pressed("throw"):
+	elif Input.is_action_just_pressed("throw") and _can_attack:
 		_can_attack = false
 		_attack_animation_name = _Q_attack
 		set_physics_process(false)
