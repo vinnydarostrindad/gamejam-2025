@@ -107,6 +107,7 @@ wait_time = 0.05
 shape = SubResource("CircleShape2D_vpj1d")
 
 [node name="BaseAttackTimer" type="Timer" parent="." index="8"]
+wait_time = 0.2
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="timeout" from="ShootBlueBallTimer" to="." method="_on_shoot_blue_ball_timer_timeout"]

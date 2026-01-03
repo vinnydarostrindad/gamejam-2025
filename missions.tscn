@@ -19,7 +19,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.35686275)
 
-[node name="Mission" parent="." instance=ExtResource("1_ef2nl")]
+[node name="Mission1" parent="." instance=ExtResource("1_ef2nl")]
 layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
@@ -31,8 +31,10 @@ offset_bottom = 256.0
 grow_horizontal = 1
 grow_vertical = 1
 mission_name = "Mob Hunter"
-mission_objective = "Mate 25 mobs"
-mission_earns = "+10 QI"
+mission_objective_text = "Mate 10 inimigos"
+mission_earns_text = "+10 QI"
+mission_type = "kill"
+mission_objective = 10
 
 [node name="Mission2" parent="." instance=ExtResource("1_ef2nl")]
 layout_mode = 0
@@ -46,8 +48,11 @@ offset_bottom = 357.0
 grow_horizontal = 1
 grow_vertical = 1
 mission_name = "EXPERT EATER"
-mission_objective = "Coma 100 vezes"
-mission_earns = "+20 QI"
+mission_objective_text = "Coma 100 vezes"
+mission_earns_text = "+20 QI"
+mission_type = "eat"
+mission_objective = 100
+mission_earns = 20
 
 [node name="Mission3" parent="." instance=ExtResource("1_ef2nl")]
 layout_mode = 0
@@ -61,5 +66,7 @@ offset_bottom = 606.0
 grow_horizontal = 1
 grow_vertical = 1
 mission_name = "Feeling Kind of Sick"
-mission_objective = "Se cure 10 vezes"
-mission_earns = "+10 QI"
+mission_objective_text = "Se cure 10 vezes"
+mission_earns_text = "+10 QI"
+mission_type = "heal"
+mission_objective = 10

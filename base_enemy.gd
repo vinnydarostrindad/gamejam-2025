@@ -70,6 +70,8 @@ func get_hit(from_position: Vector2, damage: float) -> void:
 	
 	_enemy_life -= damage
 	if _enemy_life <= 0:
+		if !PlayerState.current_mission.is_empty() and PlayerState.current_mission.type == "kill":
+			PlayerState.advance_on_mission()
 		PlayerState.add_xp(_enemy_xp)
 		queue_free()
 

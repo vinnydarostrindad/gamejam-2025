@@ -80,3 +80,5 @@ layout_mode = 2
 theme = SubResource("Theme_r0b10")
 text = "Aceitar
 "
+
+[connection signal="pressed" from="BoxContainer/AcceptBtn" to="." method="_on_accept_btn_pressed"]

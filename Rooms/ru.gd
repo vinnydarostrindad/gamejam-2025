@@ -6,6 +6,8 @@ var can_eat: bool = false
 
 func _process(_delta: float) -> void:
 	if can_eat and Input.is_action_just_pressed("interact"):
+		if !PlayerState.current_mission.is_empty() and PlayerState.current_mission.type == "eat":
+			PlayerState.advance_on_mission()
 		eat()
 
 func _on_leave_area_body_entered(_body: Node2D) -> void:

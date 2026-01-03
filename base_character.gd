@@ -27,6 +27,8 @@ func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("use_item"):
 		if items.item_img.texture:
 			if PlayerState.player_item == "heal_potion":
+				if !PlayerState.current_mission.is_empty() and PlayerState.current_mission.type == "heal":
+					PlayerState.advance_on_mission()
 				heal(100)
 			items.item_img.texture = null
 			PlayerState.player_item = ""
@@ -108,9 +110,10 @@ func disable_attack() -> void:
 func get_hit(damage: int):
 	PlayerState.player_health -= damage
 	health_bar.set_health(PlayerState.player_health)
-	
+
 	if PlayerState.player_health <= 0:
 		print("PERDEU")
+		heal(100)
 		get_tree().reload_current_scene()
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:

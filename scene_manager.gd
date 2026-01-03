@@ -8,4 +8,5 @@ func _on_scene_changed() -> void:
 	if scene:
 		var player = get_tree().get_first_node_in_group("Player")
 		if PlayerState.player_item_texture:
+			print(player)
 			player.get_item(PlayerState.player_item_texture)

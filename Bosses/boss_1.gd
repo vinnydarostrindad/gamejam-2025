@@ -6,7 +6,7 @@ enum {
 	ATTACKING
 }
 
-var state = ATTACKING
+var state = VULNERABLE
 
 @onready var marker_2d: Marker2D = $Marker2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -16,8 +16,8 @@ var state = ATTACKING
 @onready var hitbox: Area2D = $Hitbox
 
 var _direction: Vector2
-var _state_timer: float
-var _boss_life: int = 200
+var _state_timer: float = 2
+var _boss_life: float = 200
 
 func _physics_process(delta: float) -> void:
 	if _state_timer <= 0:
@@ -28,6 +28,7 @@ func _physics_process(delta: float) -> void:
 			base_attack_timer.stop()
 			hurtbox.monitoring = true
 			hitbox.get_node("HitboxCollision").disabled = true
+			_state_timer = 4
 		elif state == VULNERABLE:
 			state = ATTACKING
 			animation_player.play("spin")
@@ -36,8 +37,8 @@ func _physics_process(delta: float) -> void:
 			base_attack_timer.start()
 			hitbox.get_node("HitboxCollision").disabled = false
 			hurtbox.monitoring = false
+			_state_timer = 7
 		
-		_state_timer = 7
 	
 	_state_timer -= delta
 	if state == ATTACKING:
@@ -62,8 +63,8 @@ func _shoot():
 func _on_shoot_blue_ball_timer_timeout() -> void:
 	_shoot()
 
-func get_hit(damage: int) -> void:
-	_boss_life -= damage
+func get_hit(damage: float) -> void:
+	_boss_life -= (damage * PlayerState.player_strength)
 	print("BOSS HEALTH: ", _boss_life)
 	if _boss_life <= 0:
 		queue_free()
@@ -85,7 +86,7 @@ func _on_hitbox_area_entered(_area: Area2D) -> void:
 
 func reset_hitbox() -> void:
 	hitbox.set_deferred("monitoring", false)
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(0.2).timeout
 	hurtbox.set_deferred("monitoring", true)
 
 func _on_base_attack_timer_timeout() -> void:

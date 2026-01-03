@@ -12,5 +12,4 @@ func _on_shop_area_body_exited(_body: Node2D) -> void:
 	pawn.is_in_shop = false
 
 func _on_leave_area_body_entered(_body: Node2D) -> void:
-	print("UIAUSDHigu")
 	get_tree().call_deferred("change_scene_to_file", "res://base_level.tscn")

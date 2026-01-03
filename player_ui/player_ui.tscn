@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://byr2npjfsao03"]
+[gd_scene load_steps=6 format=3 uid="uid://byr2npjfsao03"]
 
 [ext_resource type="PackedScene" uid="uid://mbkd1pfpn2r" path="res://player_ui/xp_bar.tscn" id="1_654h1"]
 [ext_resource type="PackedScene" uid="uid://dydw7usudf065" path="res://player_ui/health_bar.tscn" id="2_pc08v"]
 [ext_resource type="PackedScene" uid="uid://b7jdfn0x21l8c" path="res://player_ui/items.tscn" id="3_tybkg"]
 [ext_resource type="PackedScene" uid="uid://cd7qeooo47vva" path="res://player_ui/happiness_bar.tscn" id="4_4mx22"]
+[ext_resource type="PackedScene" uid="uid://cjnx7idj0gb7b" path="res://player_mission.tscn" id="5_jr5g7"]
 
 [node name="PlayerUI" type="Control"]
 layout_mode = 3
@@ -23,4 +24,7 @@ layout_mode = 1
 layout_mode = 1
 
 [node name="HappinessBar" parent="." instance=ExtResource("4_4mx22")]
+layout_mode = 1
+
+[node name="PlayerMission" parent="." instance=ExtResource("5_jr5g7")]
 layout_mode = 1
